@@ -1,0 +1,23 @@
+- hosts: local
+  become: true
+  tasks:
+    - name: Ensure Docker is running
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Pull calculator image
+      community.docker.docker_image:
+        name: "docker.io/tah1rthet1ger/scientific-calculator:latest"
+        source: pull
+
+    - name: Run calculator container (detached)
+      community.docker.docker_container:
+        name: calc
+        image: "docker.io/tah1rthet1ger/scientific-calculator:latest"
+        state: started
+        restart_policy: unless-stopped
+        tty: true
+        interactive: true
+        detach: true
