@@ -29,5 +29,14 @@ pipeline {
         }
       }
     }
+    stage('Deploy (Ansible)') {
+      steps {
+        sh '''
+          cd ansible
+          ansible-galaxy collection install community.docker --force
+          ansible-playbook -i inventory.ini deploy.yml
+        '''
+      }
+    }
   }
 }
