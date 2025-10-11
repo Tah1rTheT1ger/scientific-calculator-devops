@@ -36,3 +36,5 @@ def test_power_ok():
 def test_power_bad():
     with pytest.raises(DomainError):
         power(-2, 0.5)
+
+#IMT2022100
