@@ -30,3 +30,5 @@ def power(a: float, b: float) -> float:
     if a < 0 and not float(b).is_integer():
         raise DomainError("power domain error: negative base with non-integer exponent")
     return a ** b
+
+# IMT2022100
